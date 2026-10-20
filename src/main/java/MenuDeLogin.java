@@ -39,7 +39,7 @@ public class MenuDeLogin {
                         String nomeLogin = input.nextLine();
                         System.out.print("Digite a senha para entrar: ");
                         String senhaLogin = input.nextLine();
-                        loginA.autenticarAdmin(nomeLogin, senhaLogin);
+                        loginA.autenticarAdm(nomeLogin, senhaLogin);
                     }
                 }
                 case "2"->{

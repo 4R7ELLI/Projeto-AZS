@@ -10,7 +10,7 @@ public class LoginA {
         this.senhaCadastrada = senha;
         System.out.println("Cadastro de adm com sucesso!");
     }
-    public boolean autenticarAdmin(String nomeDigitado, String senhaDigitada) {
+    public boolean autenticarAdm(String nomeDigitado, String senhaDigitada) {
         if (nomeDigitado.equals(this.nomeCadastrado) && senhaDigitada.equals(this.senhaCadastrada)) {
             System.out.println("Login efetuado com sucesso!");
             login = nomeDigitado;
