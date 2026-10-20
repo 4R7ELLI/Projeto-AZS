@@ -1,4 +1,6 @@
-public class Login {
+package login.geral.area1;
+
+public class LoginA {
     private String opcao;
     private String nomeCadastrado;
     private String senhaCadastrada;

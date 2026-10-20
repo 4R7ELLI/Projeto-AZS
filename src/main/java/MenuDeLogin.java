@@ -1,11 +1,14 @@
+import login.geral.area1.LoginA;
+import login.geral.area1.LoginC;
+
 import java.util.Scanner;
 
 public class MenuDeLogin {
     static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         boolean rodando = true;
-        Login login = new Login();
-        int cont=0;
+        LoginA loginA = new LoginA();
+        LoginC loginC= new LoginC();
         while(rodando) {
             System.out.println("--------Seja bem-vindo!--------");
             System.out.println("Faça o seu login para acessar o menu principal.");
@@ -17,30 +20,50 @@ public class MenuDeLogin {
             String opcao = input.nextLine();
             switch (opcao) {
                 case "1" ->{
+                    int cont=0;
                     System.out.println("Redirecionando para Login Administrativo...");
                     if(cont==0){
                         System.out.println("Menu de inscricao login Adm.");
                         System.out.print(("Digite o seu Nome de usuario: "));
                         String nomeusuario = input.nextLine();
-                        System.out.print("Digite o seu Senha(minimo de digito 4, maximo de 8): ");
+                        System.out.print("Digite a seu senha(minimo de digito 4, maximo de 8): ");
                         String senha = input.nextLine();
                         while (senha.length() < 4 || senha.length() > 8) {
                             System.out.print("Sua senha não estar nas regras, digite outra: ");
                             senha = input.nextLine();
                         }
-                        login.cadastrarAdm(nomeusuario, senha);
+                        loginA.cadastrarAdm(nomeusuario, senha);
                         cont++;
                     } else{
                         System.out.print("Digite o usuário para entrar: ");
                         String nomeLogin = input.nextLine();
                         System.out.print("Digite a senha para entrar: ");
                         String senhaLogin = input.nextLine();
-                        login.autenticarAdmin(nomeLogin, senhaLogin);
+                        loginA.autenticarAdmin(nomeLogin, senhaLogin);
                     }
                 }
                 case "2"->{
+                    int cont=0;
                     System.out.println("Redirecionando para Login Cliente...");
-
+                    if(cont==0){
+                        System.out.println("Menu de inscricao login cliente.");
+                        System.out.print(("Digite o seu Nome de usuario: "));
+                        String nomeusuario = input.nextLine();
+                        System.out.print("Digite a seu senha(minimo de digito 4, maximo de 8): ");
+                        String senha = input.nextLine();
+                        while (senha.length() < 4 || senha.length() > 8) {
+                            System.out.print("Sua senha não estar nas regras, digite outra: ");
+                            senha = input.nextLine();
+                        }
+                        loginC.cadastrarCliente(nomeusuario, senha);
+                        cont++;
+                    } else{
+                        System.out.print("Digite o usuário para entrar: ");
+                        String nomeLogin = input.nextLine();
+                        System.out.print("Digite a senha para entrar: ");
+                        String senhaLogin = input.nextLine();
+                        loginC.autenticarCliente(nomeLogin, senhaLogin);
+                    }
                 }
                 case "3"->{
                     System.out.println("Saindo do sistema. Até logo!");
