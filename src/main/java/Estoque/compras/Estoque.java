@@ -1,4 +1,5 @@
 package Estoque.compras;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -11,11 +12,12 @@ public class Estoque {
             this.nome = nome;
             this.quantidade = quantidade;
         }
+        @Override
         public String toString() {
-            return "Lista de produto "+nome+" | Quantidade: "+quantidade;
+            return nome+ " "+quantidade;
         }
     }
-    public void Estoque(boolean autenticarAdm){
+    public void gerenciarEstoque(boolean autenticarAdm){
         if (autenticarAdm) {
             ArrayList<Produto> ListaCompras = new ArrayList<>();
             String continuar= "Sim";
@@ -34,9 +36,12 @@ public class Estoque {
                 System.out.println("Desejar cadadrastar mais algum item? (Sim ou Não)");
                 continuar= input.nextLine();
             }
-            System.out.println(ListaCompras);
-            System.out.println("Fim do cadastro de produtos...");
+            System.out.println("\n--- Lista de Produtos Cadastrados ---");
+            for (Produto item : ListaCompras) {
+                System.out.println(item);
+            }
+            System.out.println("-------------------------------------");
+            System.out.println("Fim do cadastro de produtos... Voltando ao menu inicial.\n");
         }
-        input.close();
     }
 }

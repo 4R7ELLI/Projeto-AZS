@@ -1,14 +1,17 @@
 import login.geral.area1.LoginA;
 import login.geral.area1.LoginC;
+import Estoque.compras.Estoque;
 
 import java.util.Scanner;
 
 public class MenuDeLogin {
-    static void main(String[] args) {
+    public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         boolean rodando = true;
         LoginA loginA = new LoginA();
         LoginC loginC= new LoginC();
+        boolean admCadastrado = false;
+        boolean clienteCadastrado = false;
         while(rodando) {
             System.out.println("--------Seja bem-vindo!--------");
             System.out.println("Faça o seu login para acessar o menu principal.");
@@ -20,9 +23,8 @@ public class MenuDeLogin {
             String opcao = input.nextLine();
             switch (opcao) {
                 case "1" ->{
-                    int cont=0;
                     System.out.println("Redirecionando para Login Administrativo...");
-                    if(cont==0){
+                    if(!admCadastrado){
                         System.out.println("Menu de inscricao login Adm.");
                         System.out.print(("Digite o seu Nome de usuario: "));
                         String nomeusuario = input.nextLine();
@@ -33,19 +35,22 @@ public class MenuDeLogin {
                             senha = input.nextLine();
                         }
                         loginA.cadastrarAdm(nomeusuario, senha);
-                        cont++;
+                        admCadastrado = true;
                     } else{
                         System.out.print("Digite o usuário para entrar: ");
                         String nomeLogin = input.nextLine();
                         System.out.print("Digite a senha para entrar: ");
                         String senhaLogin = input.nextLine();
-                        loginA.autenticarAdm(nomeLogin, senhaLogin);
+                        boolean loginAprovado= loginA.autenticarAdm(nomeLogin, senhaLogin);
+                        if (loginAprovado){
+                            Estoque menuEstoque= new Estoque();
+                            menuEstoque.gerenciarEstoque(loginAprovado);
+                        }
                     }
                 }
                 case "2"->{
-                    int cont=0;
                     System.out.println("Redirecionando para Login Cliente...");
-                    if(cont==0){
+                    if(!clienteCadastrado){
                         System.out.println("Menu de inscricao login cliente.");
                         System.out.print(("Digite o seu Nome de usuario: "));
                         String nomeusuario = input.nextLine();
@@ -56,7 +61,7 @@ public class MenuDeLogin {
                             senha = input.nextLine();
                         }
                         loginC.cadastrarCliente(nomeusuario, senha);
-                        cont++;
+                        clienteCadastrado = true;
                     } else{
                         System.out.print("Digite o usuário para entrar: ");
                         String nomeLogin = input.nextLine();

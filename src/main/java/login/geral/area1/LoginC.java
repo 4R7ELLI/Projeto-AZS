@@ -1,7 +1,6 @@
 package login.geral.area1;
 
 public class LoginC {
-    private String opcao;
     private String nomeCadastrado;
     private String senhaCadastrada;
     String login= "falso";
