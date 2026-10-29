@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Estoque {
-    Scanner input = new Scanner(System.in);
+    private ArrayList<Produto> ListaCompras = new ArrayList<>();
+    private final Scanner input;
+    public Estoque(Scanner input) { this.input = input; }
     class Produto {
         String nome;
         int quantidade;
@@ -19,19 +21,22 @@ public class Estoque {
     }
     public void gerenciarEstoque(boolean autenticarAdm){
         if (autenticarAdm) {
-            ArrayList<Produto> ListaCompras = new ArrayList<>();
             String continuar= "Sim";
             System.out.println("Cadastramento de produto e as suas unidades: ");
             while(continuar.equalsIgnoreCase("Sim")){
-                int cont= 0;
-                while(cont<5){
+                for(int i=0; i<5; i++){
                     System.out.println("Digite um produto: ");
                     String nomeProduto = input.nextLine();
                     System.out.println("Digite a quantidade de produtos: ");
-                    int quantidadeProduto = input.nextInt();
-                    input.nextLine();
+                    int quantidadeProduto;
+                    try {
+                        quantidadeProduto = Integer.parseInt(input.nextLine().trim());
+                    } catch (NumberFormatException e) {
+                        System.out.println("Quantidade invalida. Tente novamente.");
+                        i--;
+                        continue;
+                    }
                     ListaCompras.add(new Produto(nomeProduto, quantidadeProduto));
-                    cont++;
                 }
                 System.out.println("Desejar cadadrastar mais algum item? (Sim ou Não)");
                 continuar= input.nextLine();
